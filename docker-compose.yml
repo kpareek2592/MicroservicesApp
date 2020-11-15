@@ -7,11 +7,15 @@ services:
     basketdb:
         image: redis
 
+    rabbitmq:
+        image: rabbitmq:3-management
+
     catalog.api:
         image: ${DOCKER_REGISTRY-}catalogapi
         build:
             context: .
             dockerfile: src/Catalog/Catalog.API/Dockerfile
+
     basket.api:
         image: ${DOCKER_REGISTRY-}basketapi
         build:
