@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace EventBusRabbitMQ
 {
-    class RabbitMQConnection : IRabbitMQConnection
+    public class RabbitMQConnection : IRabbitMQConnection
     {
         private readonly IConnectionFactory _connectionFactory;
         private IConnection _connection;
