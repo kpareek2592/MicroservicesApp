@@ -62,9 +62,9 @@ services:
         container_name: orderingapi
         restart: on-failure
         environment:
-          - ASPNETCORE_ENVIRONMENT=Development
-          - "ConnectionStrings:OrderConnection=Server=orderdb,1433;Database=OrderDb;User Id=sa;Password=!1Sunday;"
-          - "EventBus:HostName=rabbitmq"
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:OrderConnection=Server=orderdb,1433;Database=OrderDb;User Id=sa;Password=!1Sunday;"
+            - "EventBus:HostName=rabbitmq"
         depends_on:
             - orderdb
             - rabbitmq
@@ -72,5 +72,20 @@ services:
             - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
             - ${HOME}/.aspnet/https:/root/.aspnet/https/
         ports:
-          - "8002:80"
+            - "8002:80"
+
+
+    ocelotapigateway:
+        container_name: ocelotapigateway
+        depends_on:
+            - catalog.api
+            - basket.api
+            - ordering.api
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        volumes:
+            - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+            - ${HOME}/.aspnet/https:/root/.aspnet/https/
+        ports:
+            - "7000:80"
 
