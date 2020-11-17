@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
